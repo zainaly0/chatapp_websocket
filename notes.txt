@@ -1,0 +1,25 @@
+.env 
+queue connection = database
+
+php artisan queue:table
+
+composer require beyondcode/laravel-websockets
+
+php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="migrations"
+
+php artisan migrate
+
+
+php artisan vendor:publish --provider="BeyondCode\LaravelWebSockets\WebSocketsServiceProvider" --tag="config"
+
+composer require pusher/pusher-php-server
+
+php artisan queue:work
+php artisan websockets:serve
+
+
+.env 
+pusher id, key, secret = value
+
+config:broadcasting
+config:websockets
